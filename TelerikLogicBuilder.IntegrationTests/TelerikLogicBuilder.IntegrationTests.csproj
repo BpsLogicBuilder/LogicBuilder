@@ -180,6 +180,9 @@
     <None Update="Diagrams\DiagramValidatorTest\DiagramValidationSucceeds.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Diagrams\DialogShapeValidatorTest\XmlValidationRunsWhenShapeHasOneBlankOutgoingConnector.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Diagrams\DialogShapeValidatorTest\FailsvalidationBecauseDialogShapeHasNoData.vsdx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

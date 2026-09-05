@@ -26,7 +26,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="constantValue">
-									<function name="Cast" visibleText="Cast: From=hello,'wor'ld">
+									<function name="Cast" visibleText="Cast: From=hello,world&quot;">
 										<genericArguments>
 											<literalParameter genericArgumentName="From">
 												<literalType>String</literalType>
@@ -47,7 +47,7 @@
 											</objectParameter>
 										</genericArguments>
 										<parameters>
-											<literalParameter name="From">hello,'wor'ld</literalParameter>
+											<literalParameter name="From">hello,world"</literalParameter>
 										</parameters>
 									</function>
 								</objectParameter>

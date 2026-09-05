@@ -425,6 +425,44 @@ namespace TelerikLogicBuilder.IntegrationTests.RulesGenerator.ShapeValidators
             Assert.Contains(Strings.dialogShapeDataRequired, errors.Select(e => e.Message).ToHashSet());
         }
 
+        [Fact]
+        public void XmlValidationRunsWhenShapeHasOneBlankOutgoingConnector()
+        {
+            //arrange
+            IRulesGeneratorFactory rulesGeneratorFactory = _fixture.ServiceProvider.GetRequiredService<IRulesGeneratorFactory>();
+            string sourceFile = GetFullSourceFilePath(nameof(XmlValidationRunsWhenShapeHasOneBlankOutgoingConnector));
+            Document visioDocument = _fixture.VisioApplication.Documents.OpenEx
+            (
+                sourceFile,
+                (short)VisOpenSaveArgs.visOpenCopy
+            );
+            Shape shape = GetOnlyShape
+            (
+                visioDocument,
+                s =>
+                {
+                    return s.Master.NameU == UniversalMasterName.DIALOG;
+                }
+            );
+            var applicationTypeInfo = _fixture.ApplicationTypeInfoManager.GetApplicationTypeInfo(_fixture.ConfigurationService.GetSelectedApplication().Name);
+            List<ResultMessage> errors = new();
+
+            //act
+            rulesGeneratorFactory.GetShapeValidator
+            (
+                sourceFile,
+                GetPage(visioDocument),
+                new ShapeBag(shape),
+                errors,
+                applicationTypeInfo
+            ).Validate();
+
+            CloseVisioDocument(visioDocument);
+
+            //assert
+            Assert.Contains(Strings.dialogShapeDataRequired, errors.Select(e => e.Message).ToHashSet());
+        }
+
         private static string GetFullSourceFilePath(string fileNameNoExtension)
             => System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), @$"Diagrams\{nameof(DialogShapeValidatorTest)}\{fileNameNoExtension}.vsdx");
 
