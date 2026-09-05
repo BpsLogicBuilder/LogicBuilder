@@ -86,11 +86,18 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
 
                 if (toShape.Master.NameU != UniversalMasterName.ENDFLOW)
                     _resultMessageHelper.AddValidationMessage(Strings.blankConnectorExitingDialogMustEndFlow);
-
-                return;
+            }
+            else
+            {
+                //now outgoing >= 1 && blank == 0
+                ValidateNonBlankConnctors();
             }
 
-            //now outgoing >= 1 && blank == 0
+            ValidateXml();
+        }
+
+        void ValidateNonBlankConnctors()
+        {
             short invalidConnectors = _shapeHelper.CountInvalidMultipleChoiceConnectors(this.Shape);
             if (invalidConnectors > 0)
                 _resultMessageHelper.AddValidationMessage(string.Format(CultureInfo.CurrentCulture, Strings.dialogInvalidConnectorsFormat, invalidConnectors));
@@ -98,7 +105,10 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
             short duplicateChoice = _shapeHelper.CheckForDuplicateMultipleChoices(this.Shape);
             if (duplicateChoice > 0)
                 _resultMessageHelper.AddValidationMessage(string.Format(CultureInfo.CurrentCulture, Strings.dialogDuplicateChoiceFormat, duplicateChoice));
+        }
 
+        private void ValidateXml()
+        {
             string functionsXml = _shapeXmlHelper.GetXmlString(this.Shape);
             if (functionsXml.Length == 0)
             {
@@ -106,14 +116,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.RulesGenerator.ShapeValidators
                 return;
             }
 
-            List<string> errors = new();
+            List<string> errors = [];
             _functionsElementValidator.Validate
             (
                 _xmlDocumentHelpers.ToXmlElement(functionsXml),
                 this.Application,
                 errors
             );
-            errors.ForEach(error => _resultMessageHelper.AddValidationMessage(error));
+            errors.ForEach(_resultMessageHelper.AddValidationMessage);
         }
     }
 }
