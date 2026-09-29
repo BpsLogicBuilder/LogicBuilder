@@ -38,7 +38,30 @@
 										<genericArguments />
 										<parameters>
 											<objectParameter name="constantValue">
-												<variable name="Category_CategoryID" visibleText="Category_CategoryID" />
+												<function name="Cast" visibleText="Cast: From=2">
+													<genericArguments>
+														<literalParameter genericArgumentName="From">
+															<literalType>Integer</literalType>
+															<control>SingleLineTextBox</control>
+															<useForEquality>true</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+															<propertySource />
+															<propertySourceParameter />
+															<defaultValue />
+															<domain />
+														</literalParameter>
+														<objectParameter genericArgumentName="To">
+															<objectType>System.Object</objectType>
+															<useForEquality>false</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+														</objectParameter>
+													</genericArguments>
+													<parameters>
+														<literalParameter name="From">2</literalParameter>
+													</parameters>
+												</function>
 											</objectParameter>
 											<objectParameter name="type">
 												<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Int32">

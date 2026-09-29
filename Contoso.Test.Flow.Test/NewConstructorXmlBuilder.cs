@@ -1,5 +1,7 @@
 using ABIS.LogicBuilder.FlowBuilder.Constants;
+using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Constructors;
+using ABIS.LogicBuilder.FlowBuilder.Intellisense.Parameters;
 using ABIS.LogicBuilder.FlowBuilder.Intellisense.Variables;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
@@ -70,7 +72,9 @@ namespace Contoso.Test.Flow.Test
 
         private XmlElement BuildRootConstructor(LambdaExpression lambdaExpression)
         {
-            bool isFilter = lambdaExpression.ReturnType == typeof(bool);
+            Type lambdaParameterType = lambdaExpression.Parameters[0].Type;
+            bool isFilter = lambdaExpression.ReturnType == typeof(bool)
+                && (lambdaParameterType == typeof(string) || !typeof(System.Collections.IEnumerable).IsAssignableFrom(lambdaParameterType));
             string rootConstructorName = isFilter ? "FilterLambdaOperatorParameters" : "SelectorLambdaOperatorParameters";
             Constructor constructor = _configurationService.ConstructorList.Constructors.Single(c => c.Key == rootConstructorName).Value;
 
@@ -238,7 +242,22 @@ namespace Contoso.Test.Flow.Test
         }
 
         private XmlElement BuildBinaryOperator(BinaryExpression binaryExpression, string constructorName)
-            => BuildConstructorElement
+        {
+            if (binaryExpression.Left is MethodCallExpression { Method.Name: "Compare", Method.IsStatic: true, Arguments.Count: 2 } compareCall
+                && compareCall.Method.DeclaringType == typeof(string)
+                && binaryExpression.Right is ConstantExpression { Value: 0 })
+            {
+                return BuildConstructorElement
+                (
+                    constructorName,
+                    [
+                        BuildObjectParameter("left", BuildExpressionElement(compareCall.Arguments[0])),
+                        BuildObjectParameter("right", BuildExpressionElement(compareCall.Arguments[1]))
+                    ]
+                );
+            }
+
+            return BuildConstructorElement
             (
                 constructorName,
                 [
@@ -246,6 +265,7 @@ namespace Contoso.Test.Flow.Test
                     BuildObjectParameter("right", BuildExpressionElement(binaryExpression.Right))
                 ]
             );
+        }
 
         private XmlElement BuildUnaryOperator(UnaryExpression unaryExpression, string constructorName)
             => BuildConstructorElement
@@ -709,6 +729,17 @@ namespace Contoso.Test.Flow.Test
                 );
             }
 
+            if (methodName is "ToList" or "ToArray" && methodCallExpression.Arguments.Count == 1)
+            {
+                return BuildConstructorElement
+                (
+                    methodName == "ToList" ? "ToListOperatorParameters" : "ToArrayOperatorParameters",
+                    [
+                        BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Arguments[0]))
+                    ]
+                );
+            }
+
             if (methodName is "Skip" or "Take")
             {
                 string constructorName = methodName == "Skip" ? "SkipOperatorParameters" : "TakeOperatorParameters";
@@ -717,7 +748,7 @@ namespace Contoso.Test.Flow.Test
                     constructorName,
                     [
                         BuildObjectParameter("sourceOperand", BuildExpressionElement(methodCallExpression.Arguments[0])),
-                        BuildObjectParameter("count", BuildExpressionElement(methodCallExpression.Arguments[1]))
+                        BuildLiteralParameter("count", Convert.ToString(Expression.Lambda(methodCallExpression.Arguments[1]).Compile().DynamicInvoke(), CultureInfo.InvariantCulture) ?? "0")
                     ]
                 );
             }
@@ -1017,6 +1048,19 @@ namespace Contoso.Test.Flow.Test
 
                 Type underlyingType = Nullable.GetUnderlyingType(normalizedType) ?? normalizedType;
 
+                if (normalizedValue is System.Collections.IEnumerable complexEnumerable
+                    && normalizedType != typeof(string)
+                    && TryBuildConfiguredObjectList(complexEnumerable, normalizedType, out XmlElement? configuredObjectList))
+                {
+                    return BuildConstructorElement
+                    (
+                        "ConstantOperatorParameters",
+                        [
+                            BuildObjectParameter("constantValue", configuredObjectList)
+                        ]
+                    );
+                }
+
                 if (underlyingType.IsEnum)
                 {
                     string enumText = normalizedValue.ToString() ?? string.Empty;
@@ -1248,7 +1292,7 @@ namespace Contoso.Test.Flow.Test
             }
 
             XmlElement objectList = BuildObjectList(valueElements, "System.Object", "IGenericCollection", "constantValues");
-
+            
             return BuildConstructorElement
             (
                 "CollectionConstantOperatorParameters",
@@ -1262,6 +1306,55 @@ namespace Contoso.Test.Flow.Test
             {
                 return collectionType.IsGenericType ? collectionType.GetGenericArguments().FirstOrDefault() ?? typeof(object) : typeof(object);
             }
+        }
+
+        private bool TryBuildConfiguredObjectList(System.Collections.IEnumerable enumerable, Type collectionType, [NotNullWhen(true)] out XmlElement? objectList)
+        {
+            objectList = null;
+            Type elementType = collectionType.IsArray
+                ? collectionType.GetElementType() ?? typeof(object)
+                : (collectionType.IsGenericType ? collectionType.GetGenericArguments().FirstOrDefault() ?? typeof(object) : typeof(object));
+
+            if (elementType == typeof(object) || elementType.IsEnum || _typeHelper.IsLiteralType(elementType))
+                return false;
+
+            Constructor? constructor = _configurationService.ConstructorList.Constructors.Values
+                .FirstOrDefault(c => c.TypeName == elementType.FullName);
+            if (constructor is null)
+                return false;
+
+            List<object?> items = [.. enumerable.Cast<object?>()];
+            if (items.Any(item => item is null))
+                return false;
+
+            List<XmlElement> constructorElements = [];
+            foreach (object item in items.Cast<object>())
+            {
+                List<XmlElement> parameterElements = [];
+                foreach (ParameterBase parameter in constructor.Parameters)
+                {
+                    System.Reflection.PropertyInfo? property = elementType.GetProperty
+                    (
+                        parameter.Name,
+                        System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.IgnoreCase
+                    );
+                    if (property is null || !_typeHelper.IsLiteralType(property.PropertyType))
+                        return false;
+
+                    parameterElements.Add(BuildLiteralParameter(parameter.Name, ConvertToLiteralString(property.GetValue(item), property.PropertyType)));
+                }
+
+                constructorElements.Add(BuildConstructorElement(constructor.Name, parameterElements));
+            }
+
+            ListType listType = collectionType.IsArray
+                ? ListType.Array
+                : collectionType.IsGenericType && collectionType.GetGenericTypeDefinition() == typeof(List<>)
+                    ? ListType.GenericList
+                    : ListType.IGenericEnumerable;
+
+            objectList = BuildObjectList(constructorElements, elementType.FullName!, listType.ToString(), "constantValue");
+            return true;
         }
 
         private XmlElement BuildCollectionItemValue(object? item, Type declaredElementType)

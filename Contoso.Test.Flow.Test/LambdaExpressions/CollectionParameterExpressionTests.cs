@@ -1,4 +1,4 @@
-﻿using ABIS.LogicBuilder.FlowBuilder.Data;
+using ABIS.LogicBuilder.FlowBuilder.Data;
 using ABIS.LogicBuilder.FlowBuilder.Reflection;
 using ABIS.LogicBuilder.FlowBuilder.RulesGenerator.Factories;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
@@ -73,7 +73,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                 new ConstantOperatorParameters(new Address[] { new() { City = "Seattle" }, new() { City = "Portland" } })
             );
             var expression = GetExpression<Product, IEnumerable<Address>>(descriptor);
-            string ruleName = $"{nameof(QueryableParameterExpressionTests)}_{nameof(ConcatOperatorParametersWorks)}";
+            string ruleName = $"{nameof(CollectionParameterExpressionTests)}_{nameof(ConcatOperatorParametersWorks)}";
             Expression<Func<Product, IEnumerable<Address>>> newSelector = (Expression<Func<Product, IEnumerable<Address>>>)await RecreateSelectorFromSelectorLambdaOperatorParameters(expression, ruleName, typeof(Product), null);
             var result = RunExpression
             (
@@ -81,7 +81,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                 new Product { AlternateAddresses = [new Address { City = "Redmond" }, new Address { City = "Seattle" }] }
             );
 
-            AssertExpressionStringIsCorrect(expression, "$it => $it.AlternateAddresses.Concat(LogicBuilder.EntityFrameworkCore.Tests.Data.Address[])");
+            AssertExpressionStringIsCorrect(expression, "$it => $it.AlternateAddresses.Concat(Shop.Bsl.Flow.Address[])");
             Assert.Equal(4, result.Count());
         }
 
@@ -95,7 +95,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                 new ConstantOperatorParameters(new Address[] { new() { City = "Seattle" }, new() { City = "Portland" } })
             );
             var expression = GetExpression<Product, IEnumerable<Address>>(descriptor);
-            string ruleName = $"{nameof(QueryableParameterExpressionTests)}_{nameof(ExceptOperatorParametersWorks)}";
+            string ruleName = $"{nameof(CollectionParameterExpressionTests)}_{nameof(ExceptOperatorParametersWorks)}";
             Expression<Func<Product, IEnumerable<Address>>> newSelector = (Expression<Func<Product, IEnumerable<Address>>>)await RecreateSelectorFromSelectorLambdaOperatorParameters(expression, ruleName, typeof(Product), null);
             var result = RunExpression
             (
@@ -103,7 +103,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                 new Product { AlternateAddresses = [new Address { City = "Redmond" }, new Address { City = "Seattle" }] }
             );
 
-            AssertExpressionStringIsCorrect(expression, "$it => $it.AlternateAddresses.Except(LogicBuilder.EntityFrameworkCore.Tests.Data.Address[])");
+            AssertExpressionStringIsCorrect(expression, "$it => $it.AlternateAddresses.Except(Shop.Bsl.Flow.Address[])");
             var item = Assert.Single(result);
             Assert.Equal(new Address { City = "Redmond" }, item);
         }
@@ -118,7 +118,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                 new ConstantOperatorParameters(new Address[] { new() { City = "Seattle" }, new() { City = "Portland" } })
             );
             var expression = GetExpression<Product, IEnumerable<Address>>(descriptor);
-            string ruleName = $"{nameof(QueryableParameterExpressionTests)}_{nameof(UnionOperatorParametersWorks)}";
+            string ruleName = $"{nameof(CollectionParameterExpressionTests)}_{nameof(UnionOperatorParametersWorks)}";
             Expression<Func<Product, IEnumerable<Address>>> newSelector = (Expression<Func<Product, IEnumerable<Address>>>)await RecreateSelectorFromSelectorLambdaOperatorParameters(expression, ruleName, typeof(Product), null);
             var result = RunExpression
             (
@@ -126,7 +126,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                 new Product { AlternateAddresses = [new Address { City = "Redmond" }, new Address { City = "Seattle" }] }
             );
 
-            AssertExpressionStringIsCorrect(expression, "$it => $it.AlternateAddresses.Union(LogicBuilder.EntityFrameworkCore.Tests.Data.Address[])");
+            AssertExpressionStringIsCorrect(expression, "$it => $it.AlternateAddresses.Union(Shop.Bsl.Flow.Address[])");
             Assert.Equal(3, result.Count());
         }
 
@@ -255,7 +255,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
 
         private async Task<LambdaExpression> RecreateSelectorFromSelectorLambdaOperatorParameters(LambdaExpression filter, string ruleName, Type entityType, object? entity)
         {
-            string formattedXml = _xmlDocumentHelpers.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider));
+            string formattedXml = NewConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider);
             await File.WriteAllTextAsync
             (
                 Path.Combine(ProjectDirectory.GetPath(), Constants.FilterResultsFolder, $"{ruleName}.xml"),

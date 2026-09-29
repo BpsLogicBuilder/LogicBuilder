@@ -1,0 +1,112 @@
+<constructor name="SelectorLambdaOperatorParameters" visibleText="SelectorLambdaOperatorParameters: IExpressionParameter: selector;Type: sourceElementType;parameterName=$it;Type: bodyType">
+	<genericArguments />
+	<parameters>
+		<objectParameter name="selector">
+			<constructor name="ExceptOperatorParameters" visibleText="ExceptOperatorParameters: IExpressionParameter: left;IExpressionParameter: right">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="left">
+						<constructor name="MemberSelectorOperatorParameters" visibleText="MemberSelectorOperatorParameters: memberFullName=AlternateAddresses;IExpressionParameter: sourceOperand">
+							<genericArguments />
+							<parameters>
+								<literalParameter name="memberFullName">AlternateAddresses</literalParameter>
+								<objectParameter name="sourceOperand">
+									<constructor name="ParameterOperatorParameters" visibleText="ParameterOperatorParameters: parameterName=$it">
+										<genericArguments />
+										<parameters>
+											<literalParameter name="parameterName">$it</literalParameter>
+										</parameters>
+									</constructor>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+					<objectParameter name="right">
+						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
+							<genericArguments />
+							<parameters>
+								<objectParameter name="constantValue">
+									<objectList objectType="Shop.Bsl.Flow.Address" listType="Array" visibleText="Array Of Address: Count(2)">
+										<object>
+											<constructor name="Address" visibleText="Address: addressID=0;city=Seattle;state=;zipCode=">
+												<genericArguments />
+												<parameters>
+													<literalParameter name="addressID">0</literalParameter>
+													<literalParameter name="city">Seattle</literalParameter>
+													<literalParameter name="state" />
+													<literalParameter name="zipCode" />
+												</parameters>
+											</constructor>
+										</object>
+										<object>
+											<constructor name="Address" visibleText="Address: addressID=0;city=Portland;state=;zipCode=">
+												<genericArguments />
+												<parameters>
+													<literalParameter name="addressID">0</literalParameter>
+													<literalParameter name="city">Portland</literalParameter>
+													<literalParameter name="state" />
+													<literalParameter name="zipCode" />
+												</parameters>
+											</constructor>
+										</object>
+									</objectList>
+								</objectParameter>
+							</parameters>
+						</constructor>
+					</objectParameter>
+				</parameters>
+			</constructor>
+		</objectParameter>
+		<objectParameter name="sourceElementType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">Shop.Bsl.Flow.Product, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+		<literalParameter name="parameterName">$it</literalParameter>
+		<objectParameter name="bodyType">
+			<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Collections.Generic.IEnumerable`1[[Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+				<genericArguments />
+				<parameters>
+					<objectParameter name="typeHelper">
+						<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+							<genericArguments>
+								<objectParameter genericArgumentName="TService">
+									<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+									<useForEquality>false</useForEquality>
+									<useForHashCode>false</useForHashCode>
+									<useForToString>true</useForToString>
+								</objectParameter>
+							</genericArguments>
+							<parameters>
+								<objectParameter name="serviceProvider">
+									<variable name="ServiceProvider" visibleText="ServiceProvider" />
+								</objectParameter>
+							</parameters>
+						</function>
+					</objectParameter>
+					<literalParameter name="assemblyQualifiedTypeName">System.Collections.Generic.IEnumerable`1[[Shop.Bsl.Flow.Address, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e</literalParameter>
+				</parameters>
+			</function>
+		</objectParameter>
+	</parameters>
+</constructor>
