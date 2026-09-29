@@ -102,7 +102,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(selector, "$it => Convert($it.GroupBy(item => item.EnrollmentDate).OrderByDescending(group => group.Key).Select(sel => new AnonymousType() {enrollmentDate = sel.Key, count = Convert(sel.AsQueryable().Count())}))");
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
 
             await File.WriteAllTextAsync
             (
@@ -164,7 +164,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(selector, "$it => Convert($it.Where(w => (w.ListName == \"Credits\")).OrderBy(o => o.NumericValue).Select(s => new AnonymousType() {credits = s.NumericValue}))");
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
 
             await File.WriteAllTextAsync
             (
@@ -226,7 +226,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(selector, "$it => $it.Where(l => (l.ListName == \"Credits\")).OrderByDescending(l => l.NumericValue).Select(s => new LookUpsModel() {NumericValue = s.NumericValue, Text = s.Text})");
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
 
             await File.WriteAllTextAsync
             (
@@ -288,7 +288,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(selector, "$it => Convert($it.OrderBy(o => o.CourseID).Select(s => new AnonymousType() {courseID = s.CourseID}))");
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
 
             await File.WriteAllTextAsync
             (
@@ -350,7 +350,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(selector, "$it => $it.OrderBy(d => d.Title).Select(s => new CourseAssignmentModel() {CourseID = s.CourseID, CourseTitle = s.Title})");
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
 
             await File.WriteAllTextAsync
             (
@@ -412,7 +412,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(selector, "$it => $it.OrderBy(d => d.Name).Select(d => new DepartmentModel() {DepartmentID = d.DepartmentID, Name = d.Name})");
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
 
             await File.WriteAllTextAsync
             (
@@ -474,7 +474,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(selector, "$it => $it.OrderBy(d => d.FullName).Select(s => new InstructorModel() {ID = s.ID, FirstName = s.FirstName, LastName = s.LastName, FullName = s.FullName})");
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(selector, serviceProvider));
 
             await File.WriteAllTextAsync
             (

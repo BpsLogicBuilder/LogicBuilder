@@ -22,34 +22,32 @@
 						</constructor>
 					</objectParameter>
 					<objectParameter name="right">
-						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
 							<genericArguments />
 							<parameters>
 								<objectParameter name="constantValue">
-									<variable name="DataTypes_GuidProp" visibleText="DataTypes_GuidProp" />
-								</objectParameter>
-								<objectParameter name="type">
-									<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Guid">
-										<genericArguments />
-										<parameters>
-											<objectParameter name="typeHelper">
-												<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-													<genericArguments>
-														<objectParameter genericArgumentName="TService">
-															<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-															<useForEquality>false</useForEquality>
-															<useForHashCode>false</useForHashCode>
-															<useForToString>true</useForToString>
-														</objectParameter>
-													</genericArguments>
-													<parameters>
-														<objectParameter name="serviceProvider">
-															<variable name="ServiceProvider" visibleText="ServiceProvider" />
-														</objectParameter>
-													</parameters>
-												</function>
+									<function name="Cast" visibleText="Cast: From=0efdaecf-a9f0-42f3-a384-1295917af95e">
+										<genericArguments>
+											<literalParameter genericArgumentName="From">
+												<literalType>Guid</literalType>
+												<control>SingleLineTextBox</control>
+												<useForEquality>true</useForEquality>
+												<useForHashCode>false</useForHashCode>
+												<useForToString>true</useForToString>
+												<propertySource />
+												<propertySourceParameter />
+												<defaultValue />
+												<domain />
+											</literalParameter>
+											<objectParameter genericArgumentName="To">
+												<objectType>System.Object</objectType>
+												<useForEquality>false</useForEquality>
+												<useForHashCode>false</useForHashCode>
+												<useForToString>true</useForToString>
 											</objectParameter>
-											<literalParameter name="assemblyQualifiedTypeName">System.Guid</literalParameter>
+										</genericArguments>
+										<parameters>
+											<literalParameter name="From">0efdaecf-a9f0-42f3-a384-1295917af95e</literalParameter>
 										</parameters>
 									</function>
 								</objectParameter>

@@ -32,7 +32,7 @@
 												<genericArguments />
 												<parameters>
 													<objectParameter name="constantValue">
-														<function name="Cast" visibleText="Cast: From=0">
+														<function name="Cast" visibleText="Cast: From=3">
 															<genericArguments>
 																<literalParameter genericArgumentName="From">
 																	<literalType>Integer</literalType>
@@ -53,7 +53,7 @@
 																</objectParameter>
 															</genericArguments>
 															<parameters>
-																<literalParameter name="From">0</literalParameter>
+																<literalParameter name="From">3</literalParameter>
 															</parameters>
 														</function>
 													</objectParameter>
@@ -95,7 +95,7 @@
 							<genericArguments />
 							<parameters>
 								<objectParameter name="constantValue">
-									<function name="Cast" visibleText="Cast: From=Abcd">
+									<function name="Cast" visibleText="Cast: From=d">
 										<genericArguments>
 											<literalParameter genericArgumentName="From">
 												<literalType>String</literalType>
@@ -116,7 +116,7 @@
 											</objectParameter>
 										</genericArguments>
 										<parameters>
-											<literalParameter name="From">Abcd</literalParameter>
+											<literalParameter name="From">d</literalParameter>
 										</parameters>
 									</function>
 								</objectParameter>
