@@ -1677,7 +1677,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
 
         private async Task<LambdaExpression> RecreateSelectorFromSelectorLambdaOperatorParameters(LambdaExpression filter, string ruleName, Type entityType, object? entity)
         {
-            string formattedXml = _xmlDocumentHelpers.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider));
+            string formattedXml = NewConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider);
             await File.WriteAllTextAsync
             (
                 Path.Combine(ProjectDirectory.GetPath(), Constants.FilterResultsFolder, $"{ruleName}.xml"),

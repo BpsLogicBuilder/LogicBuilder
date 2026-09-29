@@ -28,120 +28,56 @@
 								<objectListParameter name="constantValues">
 									<objectList objectType="System.Object" listType="IGenericCollection" visibleText="constantValues: Count(2)">
 										<object>
-											<constructor name="ConvertToEnumOperatorParameters" visibleText="ConvertToEnumOperatorParameters: Object: constantValue;Type: type">
-												<genericArguments />
+											<function name="Cast" visibleText="Cast: From=0">
+												<genericArguments>
+													<literalParameter genericArgumentName="From">
+														<literalType>Integer</literalType>
+														<control>SingleLineTextBox</control>
+														<useForEquality>true</useForEquality>
+														<useForHashCode>false</useForHashCode>
+														<useForToString>true</useForToString>
+														<propertySource />
+														<propertySourceParameter />
+														<defaultValue />
+														<domain />
+													</literalParameter>
+													<objectParameter genericArgumentName="To">
+														<objectType>Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</objectType>
+														<useForEquality>false</useForEquality>
+														<useForHashCode>false</useForHashCode>
+														<useForToString>true</useForToString>
+													</objectParameter>
+												</genericArguments>
 												<parameters>
-													<objectParameter name="constantValue">
-														<function name="Cast" visibleText="Cast: From=First">
-															<genericArguments>
-																<literalParameter genericArgumentName="From">
-																	<literalType>String</literalType>
-																	<control>SingleLineTextBox</control>
-																	<useForEquality>true</useForEquality>
-																	<useForHashCode>false</useForHashCode>
-																	<useForToString>true</useForToString>
-																	<propertySource />
-																	<propertySourceParameter />
-																	<defaultValue />
-																	<domain />
-																</literalParameter>
-																<objectParameter genericArgumentName="To">
-																	<objectType>System.Object</objectType>
-																	<useForEquality>false</useForEquality>
-																	<useForHashCode>false</useForHashCode>
-																	<useForToString>true</useForToString>
-																</objectParameter>
-															</genericArguments>
-															<parameters>
-																<literalParameter name="From">First</literalParameter>
-															</parameters>
-														</function>
-													</objectParameter>
-													<objectParameter name="type">
-														<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-															<genericArguments />
-															<parameters>
-																<objectParameter name="typeHelper">
-																	<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-																		<genericArguments>
-																			<objectParameter genericArgumentName="TService">
-																				<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-																				<useForEquality>false</useForEquality>
-																				<useForHashCode>false</useForHashCode>
-																				<useForToString>true</useForToString>
-																			</objectParameter>
-																		</genericArguments>
-																		<parameters>
-																			<objectParameter name="serviceProvider">
-																				<variable name="ServiceProvider" visibleText="ServiceProvider" />
-																			</objectParameter>
-																		</parameters>
-																	</function>
-																</objectParameter>
-																<literalParameter name="assemblyQualifiedTypeName">Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
-															</parameters>
-														</function>
-													</objectParameter>
+													<literalParameter name="From">0</literalParameter>
 												</parameters>
-											</constructor>
+											</function>
 										</object>
 										<object>
-											<constructor name="ConvertToEnumOperatorParameters" visibleText="ConvertToEnumOperatorParameters: Object: constantValue;Type: type">
-												<genericArguments />
+											<function name="Cast" visibleText="Cast: From=1">
+												<genericArguments>
+													<literalParameter genericArgumentName="From">
+														<literalType>Integer</literalType>
+														<control>SingleLineTextBox</control>
+														<useForEquality>true</useForEquality>
+														<useForHashCode>false</useForHashCode>
+														<useForToString>true</useForToString>
+														<propertySource />
+														<propertySourceParameter />
+														<defaultValue />
+														<domain />
+													</literalParameter>
+													<objectParameter genericArgumentName="To">
+														<objectType>Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</objectType>
+														<useForEquality>false</useForEquality>
+														<useForHashCode>false</useForHashCode>
+														<useForToString>true</useForToString>
+													</objectParameter>
+												</genericArguments>
 												<parameters>
-													<objectParameter name="constantValue">
-														<function name="Cast" visibleText="Cast: From=Second">
-															<genericArguments>
-																<literalParameter genericArgumentName="From">
-																	<literalType>String</literalType>
-																	<control>SingleLineTextBox</control>
-																	<useForEquality>true</useForEquality>
-																	<useForHashCode>false</useForHashCode>
-																	<useForToString>true</useForToString>
-																	<propertySource />
-																	<propertySourceParameter />
-																	<defaultValue />
-																	<domain />
-																</literalParameter>
-																<objectParameter genericArgumentName="To">
-																	<objectType>System.Object</objectType>
-																	<useForEquality>false</useForEquality>
-																	<useForHashCode>false</useForHashCode>
-																	<useForToString>true</useForToString>
-																</objectParameter>
-															</genericArguments>
-															<parameters>
-																<literalParameter name="From">Second</literalParameter>
-															</parameters>
-														</function>
-													</objectParameter>
-													<objectParameter name="type">
-														<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-															<genericArguments />
-															<parameters>
-																<objectParameter name="typeHelper">
-																	<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
-																		<genericArguments>
-																			<objectParameter genericArgumentName="TService">
-																				<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
-																				<useForEquality>false</useForEquality>
-																				<useForHashCode>false</useForHashCode>
-																				<useForToString>true</useForToString>
-																			</objectParameter>
-																		</genericArguments>
-																		<parameters>
-																			<objectParameter name="serviceProvider">
-																				<variable name="ServiceProvider" visibleText="ServiceProvider" />
-																			</objectParameter>
-																		</parameters>
-																	</function>
-																</objectParameter>
-																<literalParameter name="assemblyQualifiedTypeName">Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
-															</parameters>
-														</function>
-													</objectParameter>
+													<literalParameter name="From">1</literalParameter>
 												</parameters>
-											</constructor>
+											</function>
 										</object>
 									</objectList>
 								</objectListParameter>

@@ -6,36 +6,9 @@
 				<genericArguments />
 				<parameters>
 					<objectParameter name="left">
-						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue">
+						<constructor name="NowDateTimeOperatorParameters" visibleText="NowDateTimeOperatorParameters: ">
 							<genericArguments />
-							<parameters>
-								<objectParameter name="constantValue">
-									<function name="Cast" visibleText="Cast: From=2026-09-05T13:30:48.1617801+00:00">
-										<genericArguments>
-											<literalParameter genericArgumentName="From">
-												<literalType>DateTimeOffset</literalType>
-												<control>SingleLineTextBox</control>
-												<useForEquality>true</useForEquality>
-												<useForHashCode>false</useForHashCode>
-												<useForToString>true</useForToString>
-												<propertySource />
-												<propertySourceParameter />
-												<defaultValue />
-												<domain />
-											</literalParameter>
-											<objectParameter genericArgumentName="To">
-												<objectType>System.Object</objectType>
-												<useForEquality>false</useForEquality>
-												<useForHashCode>false</useForHashCode>
-												<useForToString>true</useForToString>
-											</objectParameter>
-										</genericArguments>
-										<parameters>
-											<literalParameter name="From">2026-09-05T13:30:48.1617801+00:00</literalParameter>
-										</parameters>
-									</function>
-								</objectParameter>
-							</parameters>
+							<parameters />
 						</constructor>
 					</objectParameter>
 					<objectParameter name="right">

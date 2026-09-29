@@ -2,37 +2,69 @@
 	<genericArguments />
 	<parameters>
 		<objectParameter name="filterBody">
-			<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+			<constructor name="IsOfOperatorParameters" visibleText="IsOfOperatorParameters: IExpressionParameter: operand;Type: type">
 				<genericArguments />
 				<parameters>
-					<objectParameter name="constantValue">
-						<function name="Cast" visibleText="Cast: From=False">
-							<genericArguments>
-								<literalParameter genericArgumentName="From">
-									<literalType>Boolean</literalType>
-									<control>SingleLineTextBox</control>
-									<useForEquality>true</useForEquality>
-									<useForHashCode>false</useForHashCode>
-									<useForToString>true</useForToString>
-									<propertySource />
-									<propertySourceParameter />
-									<defaultValue />
-									<domain />
-								</literalParameter>
-								<objectParameter genericArgumentName="To">
-									<objectType>System.Object</objectType>
-									<useForEquality>false</useForEquality>
-									<useForHashCode>false</useForHashCode>
-									<useForToString>true</useForToString>
-								</objectParameter>
-							</genericArguments>
+					<objectParameter name="operand">
+						<constructor name="ConstantOperatorParameters" visibleText="ConstantOperatorParameters: Object: constantValue;Type: type">
+							<genericArguments />
 							<parameters>
-								<literalParameter name="From">False</literalParameter>
+								<objectParameter name="constantValue">
+									<function name="Cast" visibleText="Cast: From=0">
+										<genericArguments>
+											<literalParameter genericArgumentName="From">
+												<literalType>String</literalType>
+												<control>SingleLineTextBox</control>
+												<useForEquality>true</useForEquality>
+												<useForHashCode>false</useForHashCode>
+												<useForToString>true</useForToString>
+												<propertySource />
+												<propertySourceParameter />
+												<defaultValue />
+												<domain />
+											</literalParameter>
+											<objectParameter genericArgumentName="To">
+												<objectType>System.Object</objectType>
+												<useForEquality>false</useForEquality>
+												<useForHashCode>false</useForHashCode>
+												<useForToString>true</useForToString>
+											</objectParameter>
+										</genericArguments>
+										<parameters>
+											<literalParameter name="From">0</literalParameter>
+										</parameters>
+									</function>
+								</objectParameter>
+								<objectParameter name="type">
+									<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.String">
+										<genericArguments />
+										<parameters>
+											<objectParameter name="typeHelper">
+												<function name="Get Required Service" visibleText="Get Required Service: IServiceProvider: serviceProvider">
+													<genericArguments>
+														<objectParameter genericArgumentName="TService">
+															<objectType>LogicBuilder.App.Utils.Interfaces.ITypeHelper</objectType>
+															<useForEquality>false</useForEquality>
+															<useForHashCode>false</useForHashCode>
+															<useForToString>true</useForToString>
+														</objectParameter>
+													</genericArguments>
+													<parameters>
+														<objectParameter name="serviceProvider">
+															<variable name="ServiceProvider" visibleText="ServiceProvider" />
+														</objectParameter>
+													</parameters>
+												</function>
+											</objectParameter>
+											<literalParameter name="assemblyQualifiedTypeName">System.String</literalParameter>
+										</parameters>
+									</function>
+								</objectParameter>
 							</parameters>
-						</function>
+						</constructor>
 					</objectParameter>
 					<objectParameter name="type">
-						<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=System.Boolean">
+						<function name="Get Type" visibleText="Get Type: ITypeHelper: typeHelper;assemblyQualifiedTypeName=Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
 							<genericArguments />
 							<parameters>
 								<objectParameter name="typeHelper">
@@ -52,7 +84,7 @@
 										</parameters>
 									</function>
 								</objectParameter>
-								<literalParameter name="assemblyQualifiedTypeName">System.Boolean</literalParameter>
+								<literalParameter name="assemblyQualifiedTypeName">Shop.Bsl.Flow.Position, Shop.Bsl.Flow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</literalParameter>
 							</parameters>
 						</function>
 					</objectParameter>

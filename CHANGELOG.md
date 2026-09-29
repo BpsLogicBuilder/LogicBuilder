@@ -1,3 +1,5 @@
+* 2026-09-29 - AB#221: NewConstructorXmlBuilder working for all lanbda expression tests.
+* 2026-09-29 - AB#221: NewConstructorXmlBuilder working for FilterParameterTests.
 * 2026-09-05 - AB#219: Test Coverage for XML validation on single blank exit.
 * 2026-09-05 - AB#219: Allow XML validation to run for single blank exit connector.
 * 2026-09-03 - AB#221: Fix bug in ConstructorXmlBuilder logic.

@@ -101,6 +101,12 @@ namespace Contoso.Test.Flow.Test
                 if (constanType == typeof(string))
                     return string.Format(CultureInfo.InvariantCulture, "\"{0}\"", constant);
 
+                if (constanType == typeof(Microsoft.OData.Edm.Date) || constanType == typeof(DateOnly))
+                    return string.Format(CultureInfo.InvariantCulture, "{0:yyyy-MM-dd}", constant);
+
+                if (constanType == typeof(Microsoft.OData.Edm.TimeOfDay) || constanType == typeof(TimeOnly))
+                    return string.Format(CultureInfo.InvariantCulture, "{0:HH:mm:ss.fffffff}", constant);
+
                 return string.Format(CultureInfo.InvariantCulture, "{0}", constant);
             }
         }

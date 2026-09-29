@@ -30,7 +30,7 @@
 																					<function name="Cast" visibleText="Cast: From=2015-02-26">
 																						<genericArguments>
 																							<literalParameter genericArgumentName="From">
-																								<literalType>Date</literalType>
+																								<literalType>DateOnly</literalType>
 																								<control>SingleLineTextBox</control>
 																								<useForEquality>true</useForEquality>
 																								<useForHashCode>false</useForHashCode>
@@ -136,7 +136,7 @@
 																					<function name="Cast" visibleText="Cast: From=2015-02-26">
 																						<genericArguments>
 																							<literalParameter genericArgumentName="From">
-																								<literalType>Date</literalType>
+																								<literalType>DateOnly</literalType>
 																								<control>SingleLineTextBox</control>
 																								<useForEquality>true</useForEquality>
 																								<useForHashCode>false</useForHashCode>
@@ -241,7 +241,7 @@
 															<function name="Cast" visibleText="Cast: From=2015-02-26">
 																<genericArguments>
 																	<literalParameter genericArgumentName="From">
-																		<literalType>Date</literalType>
+																		<literalType>DateOnly</literalType>
 																		<control>SingleLineTextBox</control>
 																		<useForEquality>true</useForEquality>
 																		<useForHashCode>false</useForHashCode>

@@ -97,7 +97,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             AssertFilterStringIsCorrect(filter, filterString);
 
             IXmlDocumentHelpers helper = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
-            string formattedXml = helper.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider));
+            string formattedXml = helper.GetXmlString(NewConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider));
 
             await File.WriteAllTextAsync
             (

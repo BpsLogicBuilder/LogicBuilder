@@ -5729,7 +5729,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             var values = (IList<Position>)constant.Value!;
 
             //assert
-            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[LogicBuilder.EntityFrameworkCore.Tests.Data.Position].Contains($it.SimpleEnumProp)");
+            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[Shop.Bsl.Flow.Position].Contains($it.SimpleEnumProp)");
             Assert.Equal([Position.First, Position.Second], values);
 
             static Expression<Func<T, bool>> CreateFilter<T>()
@@ -5754,7 +5754,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             var values = (IList<Position?>)constant.Value!;
 
             //assert
-            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[System.Nullable`1[LogicBuilder.EntityFrameworkCore.Tests.Data.Position]].Contains($it.NullableSimpleEnumProp)");
+            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[System.Nullable`1[Shop.Bsl.Flow.Position]].Contains($it.NullableSimpleEnumProp)");
             Assert.Equal([Position.First, Position.Second], values);
 
             static Expression<Func<T, bool>> CreateFilter<T>()
@@ -5779,7 +5779,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             var values = (IList<Position?>)constant.Value!;
 
             //assert
-            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[System.Nullable`1[LogicBuilder.EntityFrameworkCore.Tests.Data.Position]].Contains($it.NullableSimpleEnumProp)");
+            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[System.Nullable`1[Shop.Bsl.Flow.Position]].Contains($it.NullableSimpleEnumProp)");
             Assert.Equal([Position.First, null], values);
 
             static Expression<Func<T, bool>> CreateFilter<T>()
@@ -5862,7 +5862,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             //act
             var filter = CreateFilter<Product>();
             string ruleName = $"{nameof(FilterParameterTests)}_{nameof(StringLiterals)}";
-            Expression<Func<DataTypes, bool>> newFilter = (Expression<Func<DataTypes, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(DataTypes), null);
+            Expression<Func<Product, bool>> newFilter = (Expression<Func<Product, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(Product), null);
 
             //assert
             AssertFilterStringIsCorrect(newFilter, string.Format("$it => ($it.ProductName == \"{0}\")", expected));
@@ -6782,7 +6782,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                         new ParameterOperatorParameters(parameterName),
                         typeof(Product)
                     ),
-                    "$it => IIF(($it Is LogicBuilder.EntityFrameworkCore.Tests.Data.Product), True, False)"
+                    "$it => IIF(($it Is Shop.Bsl.Flow.Product), True, False)"
                 ),
                 new IsofMethod_SucceedsTheoryData
                 (
@@ -6800,7 +6800,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                         new MemberSelectorOperatorParameters("Category", new ParameterOperatorParameters(parameterName)),
                         typeof(Category)
                     ),
-                    "$it => IIF(($it.Category Is LogicBuilder.EntityFrameworkCore.Tests.Data.Category), True, False)"
+                    "$it => IIF(($it.Category Is Shop.Bsl.Flow.Category), True, False)"
                 ),
                 new IsofMethod_SucceedsTheoryData
                 (
@@ -6809,7 +6809,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                         new MemberSelectorOperatorParameters("Category", new ParameterOperatorParameters(parameterName)),
                         typeof(DerivedCategory)
                     ),
-                    "$it => IIF(($it.Category Is LogicBuilder.EntityFrameworkCore.Tests.Data.DerivedCategory), True, False)"
+                    "$it => IIF(($it.Category Is Shop.Bsl.Flow.DerivedCategory), True, False)"
                 ),
                 new IsofMethod_SucceedsTheoryData
                 (
@@ -6818,7 +6818,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
                         new MemberSelectorOperatorParameters("Ranking", new ParameterOperatorParameters(parameterName)),
                         typeof(Position)
                     ),
-                    "$it => IIF(($it.Ranking Is LogicBuilder.EntityFrameworkCore.Tests.Data.Position), True, False)"
+                    "$it => IIF(($it.Ranking Is Shop.Bsl.Flow.Position), True, False)"
                 ),
             ];
 
@@ -7949,7 +7949,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
             Expression<Func<DataTypes, bool>> newFilter = (Expression<Func<DataTypes, bool>>)await RecreateFilterFromFilterLambdaOperatorParameters(filter, ruleName, typeof(DataTypes), null);
 
             //assert
-            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[LogicBuilder.EntityFrameworkCore.Tests.Data.Position].Contains($it.SimpleEnumProp)");
+            AssertFilterStringIsCorrect(newFilter, "$it => System.Collections.Generic.List`1[Shop.Bsl.Flow.Position].Contains($it.SimpleEnumProp)");
 
             static Expression<Func<T, bool>> CreateFilter<T>()
                 => GetFilter<T>
@@ -8110,7 +8110,7 @@ namespace Contoso.Test.Flow.Test.LambdaExpressions
 
         private async Task<LambdaExpression> RecreateFilterFromFilterLambdaOperatorParameters(LambdaExpression filter, string ruleName, Type entityType, object? entity)
         {
-            string formattedXml = _xmlDocumentHelpers.GetXmlString(ConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider));
+            string formattedXml = NewConstructorXmlBuilder.ToContructorDefinitionXml(filter, serviceProvider);
             await File.WriteAllTextAsync
             (
                 Path.Combine(ProjectDirectory.GetPath(), Constants.FilterResultsFolder, $"{ruleName}.xml"),

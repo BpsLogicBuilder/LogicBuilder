@@ -77,6 +77,18 @@ namespace Shop.Bsl.Flow
 
     public class Address
     {
+        public Address()
+        {
+        }
+
+        public Address(int addressID, string city, string state, string zipCode)
+        {
+            AddressID = addressID;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
+        }
+
         public int AddressID { get; set; }
         public string City { get; set; } = "";
         public string State { get; set; } = "";
