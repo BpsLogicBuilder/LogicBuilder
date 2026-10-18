@@ -304,6 +304,30 @@ namespace TelerikLogicBuilder.Tests
             );
         }
 
+        [Fact]
+        public void SetXmlStringSavesXmlInUnencryptedForm()
+        {
+            //arrange
+            string xmlToSave = $@"<shapeData name=""module"">
+                                <value>Some Value</value>
+                            </shapeData>";
+            string visibleText = "Some Value";
+            IShapeXmlHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeXmlHelper>();
+            IShapeDataCellManager shapeDataCellManager = _fixture.ServiceProvider.GetRequiredService<IShapeDataCellManager>();
+            Shape shape = GetOnlyShape(UniversalMasterName.JUMPOBJECT);
+
+            //act
+            helper.SetXmlString(shape, xmlToSave, visibleText);
+            _fixture.VisioDocument.Saved = true;
+
+            XmlElement xmlElement1 = GetXmlElement(helper.GetXmlString(shape));
+            XmlElement xmlElement2 = GetXmlElement(shapeDataCellManager.GetRulesDataString(shape));
+
+            //assert
+            Assert.Equal("shapeData", xmlElement1.Name);
+            Assert.Equal("shapeData", xmlElement2.Name);
+        }
+
         private Shape GetOnlyShape(string masterName)
         {
             return _fixture.VisioDocument.Pages
@@ -325,7 +349,7 @@ namespace TelerikLogicBuilder.Tests
         }
     }
 
-    public class ShapeXmlHelperFixture : IDisposable
+    public sealed class ShapeXmlHelperFixture : IDisposable
     {
         internal InvisibleApp VisioApplication;
         internal Document VisioDocument;
