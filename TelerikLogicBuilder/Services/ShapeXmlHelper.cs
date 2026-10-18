@@ -27,10 +27,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
         {
             try
             {
-                string xml = _encryption.Decrypt
-                (
-                    _shapeDataCellManager.GetRulesDataString(shape)
-                );
+                string shapeDataString = _shapeDataCellManager.GetRulesDataString(shape);
+                string xml = _encryption.Decrypt(shapeDataString);
+
+                if (string.IsNullOrEmpty(xml))
+                    xml = shapeDataString;
 
                 if (string.IsNullOrEmpty(xml))
                     return string.Empty;
@@ -61,13 +62,14 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 if (validationResponse.Success)
                 {
                     _shapeDataCellManager.UnlockUpdate(shape);
-                    _shapeDataCellManager.SetRulesDataString(shape, _encryption.Encrypt(xml));
+                    _shapeDataCellManager.SetRulesDataString(shape, xml);
                     shape.Text = visibleText;
                     _shapeDataCellManager.LockUpdate(shape);
                 }
             }
             catch (XmlException)
             {
+                //Do nothing if the xml is invalid
             }
         }
 
