@@ -6,7 +6,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Office.Interop.Visio;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Xml;
@@ -76,14 +75,21 @@ namespace TelerikLogicBuilder.Tests
             );
         }
 
-        public static List<object[]> ShapeXml_Data
+        public class ShapeXmlTheoryData(string masterName, string xmlToSave, string visibleText)
+        {
+            public string MasterName { get; } = masterName;
+            public string XmlToSave { get; } = xmlToSave;
+            public string VisibleText { get; } = visibleText;
+        }
+
+        public static TheoryData<ShapeXmlTheoryData> ShapeXml_Data
         {
             get
             {
-                return new List<object[]>
-                {
-                    new object[]
-                    {
+                return
+                [
+                    new ShapeXmlTheoryData
+                    (
                         UniversalMasterName.ACTION,
                         $@"<functions>
                             <assertFunction name=""Set Variable"" visibleText=""visibleText"">
@@ -114,9 +120,9 @@ namespace TelerikLogicBuilder.Tests
                             </function>
                         </functions>",
                         "Some Functions"
-                    },
-                    new object[]
-                    {
+                    ),
+                    new ShapeXmlTheoryData
+                    (
                         UniversalMasterName.DIALOG,
                         $@"<functions>
                             <function name=""StaticVoidMethod"" visibleText=""visibleText"">
@@ -130,9 +136,9 @@ namespace TelerikLogicBuilder.Tests
                             </function>
                         </functions>",
                         "One Dialog Function"
-                    },
-                    new object[]
-                    {
+                    ),
+                    new ShapeXmlTheoryData
+                    (
                         UniversalMasterName.CONDITIONOBJECT,
                         $@"<conditions>
                             <and>
@@ -159,9 +165,9 @@ namespace TelerikLogicBuilder.Tests
                             </and>
                         </conditions>",
                         "Comditions"
-                    },
-                    new object[]
-                    {
+                    ),
+                    new ShapeXmlTheoryData
+                    (
                         UniversalMasterName.DECISIONOBJECT,
                         $@"<decisions>
                                 <and>
@@ -192,17 +198,17 @@ namespace TelerikLogicBuilder.Tests
                                 </and>
                             </decisions>",
                         "Decisions"
-                    },
-                    new object[]
-                    {
+                    ),
+                    new ShapeXmlTheoryData
+                    (
                         UniversalMasterName.JUMPOBJECT,
                         $@"<shapeData name=""module"">
                                 <value>Some Value</value>
                             </shapeData>",
                         "Some Value"
-                    },
-                    new object[]
-                    {
+                    ),
+                    new ShapeXmlTheoryData
+                    (
                         UniversalMasterName.CONNECTOBJECT,
                         $@"<connector name=""1"" connectorCategory=""1"">
                               <text>
@@ -221,33 +227,33 @@ namespace TelerikLogicBuilder.Tests
                               </metaObject>
                             </connector>",
                         "1: Some Text"
-                    },
-                };
+                    ),
+                ];
             }
         }
 
         [Theory]
-        [MemberData(nameof(ShapeXml_Data))]
-        public void CanSaveXmlToAllShapes(string masterName, string xmlToSave, string visibleText)
+        [MemberData(nameof(ShapeXml_Data), MemberType = typeof(ShapeXmlHelperTest))]
+        public void CanSaveXmlToAllShapes(ShapeXmlTheoryData shapeXmlTheoryData)
         {
             //arrange
             IShapeXmlHelper helper = _fixture.ServiceProvider.GetRequiredService<IShapeXmlHelper>();
-            Shape shape = GetOnlyShape(masterName);
+            Shape shape = GetOnlyShape(shapeXmlTheoryData.MasterName);
 
             //act
-            helper.SetXmlString(shape, xmlToSave, visibleText);
+            helper.SetXmlString(shape, shapeXmlTheoryData.XmlToSave, shapeXmlTheoryData.VisibleText);
             string savedString = helper.GetXmlString(shape);
             _fixture.VisioDocument.Saved = true;
 
             ////assert
             Assert.Equal
             (
-                xmlToSave,
+                shapeXmlTheoryData.XmlToSave,
                 savedString
             );
             Assert.Equal
             (
-                visibleText,
+                shapeXmlTheoryData.VisibleText,
                 shape.Text
             );
         }

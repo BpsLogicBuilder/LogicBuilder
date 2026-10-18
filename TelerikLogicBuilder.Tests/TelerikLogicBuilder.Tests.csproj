@@ -100,6 +100,9 @@
     <None Update="Tables\CellHelperTest\CountDialogFunctions\CountDialogFunctionsReturnsTheExpectedDialogCount.tbl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Tables\CellXmlHelperTest\CanSaveXmlToAllCells.tbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Tables\CellXmlHelperTest\GetXmlStringGivenColumnIndexSucceeds.tbl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -290,6 +293,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Diagrams\ShapeXmlHelperTest.vsdx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Tables\CellXmlHelperTest\SetXmlStringSavesXmlInUnencryptedForm.tbl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
