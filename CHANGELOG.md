@@ -1,3 +1,4 @@
+* 2026-10-18 - AB#226: Save and retrieve Cell XML without encryption.
 * 2026-10-18 - AB#225: Save and retrieve Shape XML without encryption.
 * 2026-09-29 - AB#221: NewConstructorXmlBuilder working for all lanbda expression tests.
 * 2026-09-29 - AB#221: NewConstructorXmlBuilder working for FilterParameterTests.

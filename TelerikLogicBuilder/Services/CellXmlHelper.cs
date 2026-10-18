@@ -1,10 +1,8 @@
 ﻿using ABIS.LogicBuilder.FlowBuilder.Constants;
 using ABIS.LogicBuilder.FlowBuilder.Enums;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
-using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.XmlValidation;
 using ABIS.LogicBuilder.FlowBuilder.XmlValidation.Factories;
 using System.Data;
-using System.Windows.Forms;
 using System.Xml;
 using Telerik.WinControls.UI;
 
@@ -35,14 +33,17 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
                 => cell.Value?.ToString() ?? string.Empty;
         }
 
-        public string GetXmlString(string encryptedData, int columnIndex) 
-            => GetXmlString(encryptedData, GetSchemaName(columnIndex));
+        public string GetXmlString(string cellData, int columnIndex) 
+            => GetXmlString(cellData, GetSchemaName(columnIndex));
 
-        public string GetXmlString(string encryptedData, SchemaName schemaName)
+        public string GetXmlString(string cellData, SchemaName schemaName)
         {
             try
             {
-                string xml = _encryption.Decrypt(encryptedData);
+                string xml = _encryption.Decrypt(cellData);
+
+                if (string.IsNullOrEmpty(xml))
+                    xml = cellData;
 
                 var validationResponse = _xmlValidatorFactory.GetXmlValidator
                 (
@@ -59,9 +60,11 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
         public void SetXmlString(DataSet dataSet, GridViewCellInfo currentCell, string cellXml, string visibleText)
         {
-            int rowIndex = currentCell.RowInfo.Index;
-            int columnIndex = currentCell.ColumnInfo.Index;
+            SetXmlString(dataSet, currentCell.RowInfo.Index, currentCell.ColumnInfo.Index, cellXml, visibleText);
+        }
 
+        public void SetXmlString(DataSet dataSet, int rowIndex, int columnIndex, string cellXml, string visibleText)
+        {
             try
             {
                 var validationResponse = _xmlValidatorFactory.GetXmlValidator
@@ -77,7 +80,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services
 
                 //Always set visible text column first.  The visible text column is hidden
                 dataSet.Tables[TableName.RULESTABLE]!.Rows[rowIndex][columnIndex + 1] = visibleText;
-                dataSet.Tables[TableName.RULESTABLE]!.Rows[rowIndex][columnIndex] = _encryption.Encrypt(cellXml);
+                dataSet.Tables[TableName.RULESTABLE]!.Rows[rowIndex][columnIndex] = cellXml;
             }
             catch (XmlException)
             {
