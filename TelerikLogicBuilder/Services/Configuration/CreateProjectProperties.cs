@@ -18,7 +18,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class CreateProjectProperties : ICreateProjectProperties
     {
         private readonly ICreateDefaultApplication _createDefaultApplication;
-        private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
@@ -27,7 +26,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
         public CreateProjectProperties(
             ICreateDefaultApplication createDefaultApplication,
-            IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IProjectPropertiesItemFactory projectPropertiesItemFactory,
@@ -36,7 +34,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             _projectPropertiesItemFactory = projectPropertiesItemFactory;
             _createDefaultApplication = createDefaultApplication;
-            _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -108,7 +105,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 if (!Directory.Exists(projectProperties.ProjectPath))
                     _fileIOHelper.CreateDirectory(projectProperties.ProjectPath);
 
-                _encryption.EncryptToFile(projectProperties.ProjectFileFullName, xmlString);
+                _fileIOHelper.SaveFile(projectProperties.ProjectFileFullName, xmlString);
                 _fileIOHelper.SaveFile
                 (
                     $"{projectProperties.ProjectFileFullName}{FileExtensions.XMLFILEEXTENSION}",

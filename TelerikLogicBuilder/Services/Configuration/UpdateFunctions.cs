@@ -14,7 +14,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class UpdateFunctions : IUpdateFunctions
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -23,7 +22,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
         public UpdateFunctions(
             IConfigurationService configurationService,
-            IEncryption encryption,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
@@ -31,7 +29,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IXmlValidatorFactory xmlValidatorFactory)
         {
             _configurationService = configurationService;
-            _encryption = encryption;
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
@@ -85,7 +82,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
                     string xmlToSave = saveDocumentElement.OuterXml;
                     ValidateXml(xmlToSave);
-                    _encryption.EncryptToFile(fullPath, xmlToSave);
+                    _fileIOHelper.SaveFile(fullPath, xmlToSave);
                     _fileIOHelper.SaveFile
                     (
                         $"{fullPath}{FileExtensions.XMLFILEEXTENSION}",

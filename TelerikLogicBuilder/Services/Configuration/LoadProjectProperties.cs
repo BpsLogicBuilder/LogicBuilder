@@ -18,6 +18,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     {
         private readonly ICreateProjectProperties _createProjectProperties;
         private readonly IEncryption _encryption;
+        private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IProjectPropertiesXmlParser _projectPropertiesXmlParser;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -26,6 +27,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         public LoadProjectProperties(
             ICreateProjectProperties createProjectProperties,
             IEncryption encryption,
+            IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IProjectPropertiesXmlParser projectPropertiesXmlParser,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -33,6 +35,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             _createProjectProperties = createProjectProperties;
             _encryption = encryption;
+            _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _projectPropertiesXmlParser = projectPropertiesXmlParser;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -46,7 +49,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 if (!File.Exists(fullPath))
                     return _createProjectProperties.Create(fullPath);
 
-                XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(_encryption.DecryptFromFile(fullPath));
+                XmlDocument xmlDocument = _xmlDocumentHelpers.ToXmlDocument(LoadXml());
                 var validationResponse = _xmlValidator.Validate
                 (
                     _xmlDocumentHelpers.GetDocumentElement(xmlDocument).OuterXml
@@ -60,6 +63,15 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     _pathHelper.GetFileNameNoExtention(fullPath),
                     _pathHelper.GetFilePath(fullPath)
                 );
+
+                string LoadXml()
+                {
+                    string loadedString = _encryption.DecryptFromFile(fullPath);
+                    if (!string.IsNullOrEmpty(loadedString))
+                        return loadedString;
+
+                    return _fileIOHelper.ReadFromFile(fullPath);
+                }
             }
             catch (Exception ex)
             {

@@ -17,7 +17,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     {
         private readonly IBuiltInFunctionsLoader _builtInFunctionsLoader;
         private readonly IConfigurationService _configurationService;
-        private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -26,7 +25,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         public CreateFunctions(
             IBuiltInFunctionsLoader builtInFunctionsLoader,
             IConfigurationService configurationService,
-            IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
@@ -34,7 +32,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         {
             _builtInFunctionsLoader = builtInFunctionsLoader;
             _configurationService = configurationService;
-            _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -117,7 +114,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
                     string xmlToSave = _xmlDocumentHelpers.GetDocumentElement(saveDocument).OuterXml;
                     ValidateXml(xmlToSave);
-                    _encryption.EncryptToFile(fullPath, xmlToSave);
+                    _fileIOHelper.SaveFile(fullPath, xmlToSave);
                     _fileIOHelper.SaveFile
                     (
                         $"{fullPath}{FileExtensions.XMLFILEEXTENSION}",

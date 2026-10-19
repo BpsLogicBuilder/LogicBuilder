@@ -43,47 +43,81 @@ namespace TelerikLogicBuilder.Tests.Configuration
             //assert
             Assert.Equal(XmlDataConstants.FORMELEMENT, result.DocumentElement!.Name);
             Assert.Equal("OperatorGroup", xmlDocumentHelpers.SelectSingleElement(result, "//constructor").GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+        }
 
-            static XmlDocument GetDocumentToSave()
-            {
-                XmlDocument xmlDocument = new();
-                xmlDocument.LoadXml(@"<form>
-                                          <folder name=""folderName"">
-                                            <constructor name=""OperatorGroup"">
-	                                            <typeName>LogicBuilder.Forms.Parameters.Grid.OperatorGroup</typeName>
-	                                            <parameters>
-		                                            <literalParameter name=""typeName"">
-			                                            <literalType>String</literalType>
-			                                            <control>SingleLineTextBox</control>
-			                                            <optional>false</optional>
-			                                            <useForEquality>true</useForEquality>
-			                                            <useForHashCode>true</useForHashCode>
-			                                            <useForToString>true</useForToString>
-			                                            <propertySource />
-			                                            <propertySourceParameter />
-			                                            <defaultValue>string</defaultValue>
-			                                            <domain>
-				                                            <item>string</item>
-				                                            <item>number</item>
-			                                            </domain>
-			                                            <comments></comments>
-		                                            </literalParameter>
-		                                            <objectListParameter name=""Operators"">
-                                                        <objectType>Operator</objectType>
-			                                            <listType>GenericList</listType>
-			                                            <control>HashSetForm</control>
-			                                            <optional>false</optional>
-			                                            <comments></comments>
-		                                            </objectListParameter>
-	                                            </parameters>
-	                                            <genericArguments />
-	                                            <summary></summary>
-                                            </constructor>
-                                          </folder>
-                                        </form>");
+        [Fact]
+        public void UpdateConstructorFileNotEncrypted()
+        {
+            //arrange
+            ICreateProjectProperties createProjectProperties = serviceProvider.GetRequiredService<ICreateProjectProperties>();
+            IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
+            IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
+            ILoadConstructors loadConstructors = serviceProvider.GetRequiredService<ILoadConstructors>();
+            IUpdateConstructors updateConstructors = serviceProvider.GetRequiredService<IUpdateConstructors>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            IFileIOHelper fileIOHelper = serviceProvider.GetRequiredService<IFileIOHelper>();
+            configurationService.ProjectProperties = createProjectProperties.Create
+            (
+                pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
+                nameof(CanUpdateConstructor)
+            );
 
-                return xmlDocument;
-            }
+            //act
+            updateConstructors.Update(GetDocumentToSave());
+            var result = loadConstructors.Load();
+            string fullPath = pathHelper.CombinePaths
+            (
+                configurationService.ProjectProperties.ProjectPath,
+                ConfigurationFiles.Constructors
+            );
+            string savedText = fileIOHelper.ReadFromFile(fullPath);
+            System.Xml.XmlDocument xmlDocument = xmlDocumentHelpers.ToXmlDocument(savedText);
+
+            //assert
+            Assert.Equal(XmlDataConstants.FORMELEMENT, result.DocumentElement!.Name);
+            Assert.Equal(XmlDataConstants.FORMELEMENT, xmlDocument.DocumentElement!.Name);
+            Assert.Equal("OperatorGroup", xmlDocumentHelpers.SelectSingleElement(xmlDocument, "//constructor").GetAttribute(XmlDataConstants.NAMEATTRIBUTE));
+        }
+
+        static XmlDocument GetDocumentToSave()
+        {
+            XmlDocument xmlDocument = new();
+            xmlDocument.LoadXml(@"<form>
+                                    <folder name=""folderName"">
+                                    <constructor name=""OperatorGroup"">
+	                                    <typeName>LogicBuilder.Forms.Parameters.Grid.OperatorGroup</typeName>
+	                                    <parameters>
+		                                    <literalParameter name=""typeName"">
+			                                    <literalType>String</literalType>
+			                                    <control>SingleLineTextBox</control>
+			                                    <optional>false</optional>
+			                                    <useForEquality>true</useForEquality>
+			                                    <useForHashCode>true</useForHashCode>
+			                                    <useForToString>true</useForToString>
+			                                    <propertySource />
+			                                    <propertySourceParameter />
+			                                    <defaultValue>string</defaultValue>
+			                                    <domain>
+				                                    <item>string</item>
+				                                    <item>number</item>
+			                                    </domain>
+			                                    <comments></comments>
+		                                    </literalParameter>
+		                                    <objectListParameter name=""Operators"">
+                                                <objectType>Operator</objectType>
+			                                    <listType>GenericList</listType>
+			                                    <control>HashSetForm</control>
+			                                    <optional>false</optional>
+			                                    <comments></comments>
+		                                    </objectListParameter>
+	                                    </parameters>
+	                                    <genericArguments />
+	                                    <summary></summary>
+                                    </constructor>
+                                    </folder>
+                                </form>");
+
+            return xmlDocument;
         }
     }
 }

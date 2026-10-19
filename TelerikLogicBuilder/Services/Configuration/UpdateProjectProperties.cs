@@ -17,7 +17,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 {
     internal class UpdateProjectProperties : IUpdateProjectProperties
     {
-        private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IProjectPropertiesItemFactory _projectPropertiesItemFactory;
@@ -25,7 +24,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
         private readonly IXmlValidator _xmlValidator;
 
         public UpdateProjectProperties(
-            IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IProjectPropertiesItemFactory projectPropertiesItemFactory,
@@ -33,7 +31,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IXmlValidatorFactory xmlValidatorFactory)
         {
             _projectPropertiesItemFactory = projectPropertiesItemFactory;
-            _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -77,7 +74,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                 if (!Directory.Exists(projectProperties.ProjectPath))
                     _fileIOHelper.CreateDirectory(projectProperties.ProjectPath);
 
-                _encryption.EncryptToFile(projectProperties.ProjectFileFullName, xmlString);
+                _fileIOHelper.SaveFile(projectProperties.ProjectFileFullName, xmlString);
                 _fileIOHelper.SaveFile
                 (
                     $"{projectProperties.ProjectFileFullName}{FileExtensions.XMLFILEEXTENSION}",

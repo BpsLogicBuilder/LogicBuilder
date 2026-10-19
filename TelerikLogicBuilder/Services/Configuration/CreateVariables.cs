@@ -16,7 +16,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class CreateVariables : ICreateVariables
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IEncryption _encryption;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
         private readonly IXmlDocumentHelpers _xmlDocumentHelpers;
@@ -24,14 +23,12 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
         public CreateVariables(
             IConfigurationService configurationService,
-            IEncryption encryption,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
             IXmlDocumentHelpers xmlDocumentHelpers,
             IXmlValidatorFactory xmlValidatorFactory)
         {
             _configurationService = configurationService;
-            _encryption = encryption;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
             _xmlDocumentHelpers = xmlDocumentHelpers;
@@ -79,7 +76,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     if (!Directory.Exists(_pathHelper.GetFilePath(fullPath)))
                         _fileIOHelper.CreateDirectory(_pathHelper.GetFilePath(fullPath));
 
-                    _encryption.EncryptToFile(fullPath, xmlString);
+                    _fileIOHelper.SaveFile(fullPath, xmlString);
                     _fileIOHelper.SaveFile
                     (
                         $"{fullPath}{FileExtensions.XMLFILEEXTENSION}",
