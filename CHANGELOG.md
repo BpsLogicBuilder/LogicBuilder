@@ -1,3 +1,4 @@
+* 2026-10-19 - AB#227: Upgrade NuGet packages.
 * 2026-10-19 - AB#227: Saving configuration forms without encryption.
 * 2026-10-19 - AB#227: Dynamically determine solution folder in tests.
 * 2026-10-18 - AB#226: Save and retrieve Cell XML without encryption.

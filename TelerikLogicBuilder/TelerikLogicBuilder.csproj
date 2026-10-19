@@ -112,9 +112,9 @@
     <PackageReference Include="LogicBuilder.Attributes" Version="2.0.6" />
     <PackageReference Include="LogicBuilder.DataContracts" Version="2.0.6" />
     <PackageReference Include="LogicBuilder.Workflow.Activities.Rules" Version="2.0.6" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.13" />
 		<PackageReference Include="Microsoft.OData.Edm" Version="8.2.1" />
-    <PackageReference Include="System.Reactive" Version="6.1.0" />
+    <PackageReference Include="System.Reactive" Version="7.0.0" />
     <PackageReference Include="UI.for.WinForms.AllControls.Net90" Version="2026.2.702" />
   </ItemGroup>
 
