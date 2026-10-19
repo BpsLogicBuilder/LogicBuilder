@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TelerikLogicBuilder.IntegrationTests.Constants;
 using Xunit;
 
 namespace TelerikLogicBuilder.IntegrationTests.Reflection
@@ -37,18 +38,18 @@ namespace TelerikLogicBuilder.IntegrationTests.Reflection
             configurationService.ProjectProperties = projectPropertiesItemFactory.GetProjectProperties
             (
                 "Contoso",
-                @"C:\.github\BpsLogicBuilder\LogicBuilder.Samples\FlowProjects\Contoso",
+                @$"{TestFolders.FlowProjectPath}",
                 new Dictionary<string, Application>
                 {
                     ["app01"] = projectPropertiesItemFactory.GetApplication
                     (
                         "App01",
                         "App01",
-                        "Contoso.Spa.Flow.dll",
-                        @"C:\.github\BpsLogicBuilder\LogicBuilder.Samples\SPA\Contoso\Contoso.Spa.Flow\bin\Debug\net9.0",
+                        "Contoso.Test.Flow.dll",
+                        @$"{ProjectDirectory.GetSolutionPath()}\Contoso.Test.Flow\bin\x64\Debug\netstandard2.0",
                         ABIS.LogicBuilder.FlowBuilder.Enums.RuntimeType.NetCore,
                         new List<string>(),
-                        "Contoso.Spa.Flow.FlowActivity",
+                        "Contoso.Test.Flow.FlowActivity",
                         "",
                         "",
                         new List<string>(),

@@ -129,6 +129,7 @@ namespace TelerikLogicBuilder.Tests
             //act
             manager.UnlockUpdate(shape);
             shape.Text = newText;
+            _fixture.VisioDocument.Saved = true;
 
             //assert
             Assert.Equal(newText, shape.Text);

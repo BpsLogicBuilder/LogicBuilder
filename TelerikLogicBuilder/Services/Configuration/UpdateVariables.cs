@@ -14,7 +14,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
     internal class UpdateVariables : IUpdateVariables
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IEncryption _encryption;
         private readonly IExceptionHelper _exceptionHelper;
         private readonly IFileIOHelper _fileIOHelper;
         private readonly IPathHelper _pathHelper;
@@ -23,7 +22,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
 
         public UpdateVariables(
             IConfigurationService configurationService,
-            IEncryption encryption,
             IExceptionHelper exceptionHelper,
             IFileIOHelper fileIOHelper,
             IPathHelper pathHelper,
@@ -31,7 +29,6 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
             IXmlValidatorFactory xmlValidatorFactory)
         {
             _configurationService = configurationService;
-            _encryption = encryption;
             _exceptionHelper = exceptionHelper;
             _fileIOHelper = fileIOHelper;
             _pathHelper = pathHelper;
@@ -68,7 +65,7 @@ namespace ABIS.LogicBuilder.FlowBuilder.Services.Configuration
                     if (!Directory.Exists(_pathHelper.GetFilePath(fullPath)))
                         _fileIOHelper.CreateDirectory(_pathHelper.GetFilePath(fullPath));
 
-                    _encryption.EncryptToFile(fullPath, xmlString);
+                    _fileIOHelper.SaveFile(fullPath, xmlString);
                     _fileIOHelper.SaveFile
                     (
                         $"{fullPath}{FileExtensions.XMLFILEEXTENSION}",

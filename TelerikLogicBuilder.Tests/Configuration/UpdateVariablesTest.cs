@@ -3,7 +3,6 @@ using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces;
 using ABIS.LogicBuilder.FlowBuilder.ServiceInterfaces.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Linq;
 using System.Xml;
 using TelerikLogicBuilder.Tests.Constants;
 using Xunit;
@@ -53,49 +52,102 @@ namespace TelerikLogicBuilder.Tests.Configuration
                 )
                 .Count
             );
+        }
 
-            static XmlDocument GetDocumentToSave()
-            {
-                XmlDocument xmlDocument = new();
-                xmlDocument.LoadXml(@"<folder name=""Decisions"">
-                                          <objectVariable name=""DDD"">
-                                              <memberName>acrg</memberName>
-                                              <variableCategory>Property</variableCategory>
-                                              <castVariableAs />
-                                              <typeName />
-                                              <referenceName />
-                                              <referenceDefinition />
-                                              <castReferenceAs />
-                                              <referenceCategory>This</referenceCategory>
-                                              <evaluation>Implemented</evaluation>
-                                              <comments />
-                                              <metadata />
-                                              <objectType>MMM</objectType>
-                                            </objectVariable>
-	                                        <literalListVariable name=""List MLT ACRG"">
-		                                        <memberName>acrg</memberName>
-		                                        <variableCategory>Property</variableCategory>
-		                                        <castVariableAs />
-		                                        <typeName />
-		                                        <referenceName />
-		                                        <referenceDefinition />
-		                                        <castReferenceAs />
-		                                        <referenceCategory>This</referenceCategory>
-		                                        <evaluation>Implemented</evaluation>
-		                                        <comments />
-		                                        <metadata />
-		                                        <literalType>Decimal</literalType>
-		                                        <listType>GenericList</listType>
-		                                        <control>HashSetForm</control>
-		                                        <elementControl>SingleLineTextBox</elementControl>
-		                                        <propertySource />
-		                                        <defaultValue />
-		                                        <domain />
-	                                        </literalListVariable>
-                                        </folder>");
+        [Fact]
+        public void UpdateVariablesFileNotEncrypted()
+        {
+            //arrange
+            ICreateProjectProperties createProjectProperties = serviceProvider.GetRequiredService<ICreateProjectProperties>();
+            IConfigurationService configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
+            IPathHelper pathHelper = serviceProvider.GetRequiredService<IPathHelper>();
+            ILoadVariables loadVariables = serviceProvider.GetRequiredService<ILoadVariables>();
+            IUpdateVariables updateVariables = serviceProvider.GetRequiredService<IUpdateVariables>();
+            IFileIOHelper fileIOHelper = serviceProvider.GetRequiredService<IFileIOHelper>();
+            IXmlDocumentHelpers xmlDocumentHelpers = serviceProvider.GetRequiredService<IXmlDocumentHelpers>();
+            configurationService.ProjectProperties = createProjectProperties.Create
+            (
+                pathHelper.CombinePaths(TestFolders.LogicBuilderTests, this.GetType().Name),
+                nameof(CanUpdateVariablesFile)
+            );
 
-                return xmlDocument;
-            }
+            //act
+            updateVariables.Update(GetDocumentToSave());
+            var result = loadVariables.Load();
+            string fullPath = pathHelper.CombinePaths
+            (
+                configurationService.ProjectProperties.ProjectPath,
+                ConfigurationFiles.Variables
+            );
+            string savedText = fileIOHelper.ReadFromFile(fullPath);
+            XmlDocument xmlDocument = xmlDocumentHelpers.ToXmlDocument(savedText);
+
+            //assert
+            Assert.Equal(XmlDataConstants.FOLDERELEMENT, result.DocumentElement!.Name);
+            Assert.Equal(XmlDataConstants.FOLDERELEMENT, xmlDocument.DocumentElement!.Name);
+            Assert.Equal
+            (
+                2,
+                xmlDocumentHelpers.SelectElements
+                (
+                    result,
+                    $"//{XmlDataConstants.LITERALVARIABLEELEMENT}|//{XmlDataConstants.OBJECTVARIABLEELEMENT}|//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT}"
+                )
+                .Count
+            );
+            Assert.Equal
+            (
+                2,
+                xmlDocumentHelpers.SelectElements
+                (
+                    xmlDocument,
+                    $"//{XmlDataConstants.LITERALVARIABLEELEMENT}|//{XmlDataConstants.OBJECTVARIABLEELEMENT}|//{XmlDataConstants.LITERALLISTVARIABLEELEMENT}|//{XmlDataConstants.OBJECTLISTVARIABLEELEMENT}"
+                )
+                .Count
+            );
+        }
+
+        static XmlDocument GetDocumentToSave()
+        {
+            XmlDocument xmlDocument = new();
+            xmlDocument.LoadXml(@"<folder name=""Decisions"">
+                                    <objectVariable name=""DDD"">
+                                        <memberName>acrg</memberName>
+                                        <variableCategory>Property</variableCategory>
+                                        <castVariableAs />
+                                        <typeName />
+                                        <referenceName />
+                                        <referenceDefinition />
+                                        <castReferenceAs />
+                                        <referenceCategory>This</referenceCategory>
+                                        <evaluation>Implemented</evaluation>
+                                        <comments />
+                                        <metadata />
+                                        <objectType>MMM</objectType>
+                                    </objectVariable>
+	                                <literalListVariable name=""List MLT ACRG"">
+		                                <memberName>acrg</memberName>
+		                                <variableCategory>Property</variableCategory>
+		                                <castVariableAs />
+		                                <typeName />
+		                                <referenceName />
+		                                <referenceDefinition />
+		                                <castReferenceAs />
+		                                <referenceCategory>This</referenceCategory>
+		                                <evaluation>Implemented</evaluation>
+		                                <comments />
+		                                <metadata />
+		                                <literalType>Decimal</literalType>
+		                                <listType>GenericList</listType>
+		                                <control>HashSetForm</control>
+		                                <elementControl>SingleLineTextBox</elementControl>
+		                                <propertySource />
+		                                <defaultValue />
+		                                <domain />
+	                                </literalListVariable>
+                                </folder>");
+
+            return xmlDocument;
         }
     }
 }
